@@ -122,7 +122,7 @@ class StartMenu(State):
             self.menu = pygame_menu.Menu('Options', SCREEN_WIDTH, SCREEN_HEIGHT, theme=pygame_menu.themes.THEME_DARK)
 
             # Add game instructions
-        instructions_text = "To move, use left and right arrow keys, or a and d\nTo jump, use up arrow key, w, or spacebar\nTo melee attack, use left click or q\nTo range attack, use right click or e"
+        instructions_text = "To move, use left and right arrow keys, or a and d\nTo jump, use up arrow key, w, or spacebar\nTo melee attack, use left click or j\nTo range attack, use right click or k"
         self.menu.add.label(instructions_text, max_char=-1, font_size=20)
 
         # Add back button

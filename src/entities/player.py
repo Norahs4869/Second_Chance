@@ -85,7 +85,7 @@ class Player(pg.sprite.Sprite):
 
         self.timer = Timer(start=True)
         self.last_health_increase_time = 0
-        self.health_duration = 3  # How often to increase HP in seconds
+        self.health_duration = 6  # How often to increase HP in seconds
         self.health_increase_amount = 10
 
         self.melee_attacks = pg.sprite.Group()  # Group for managing melee attack instances
@@ -95,19 +95,19 @@ class Player(pg.sprite.Sprite):
         self.rangeAttack_initiated = False
 
         self.last_ranged_attack_time = 0  # Initialize with 0
-        self.ranged_attack_cooldown = 3  # Cooldown duration for the ranged attack in seconds
+        self.ranged_attack_cooldown = 0  # Cooldown duration for the ranged attack in seconds. Changed to no cooldown when using arrows
 
         self.ranged_attack_count = 0  # Initialize the counter for ranged attacks
-        self.ranged_attack_max = 10  # Maximum number of ranged attack uses the player has
+        self.ranged_attack_max = 100  # Maximum number of ranged attack uses the player has. Changed to 100 arrows, it was 10 
 
         # Load the sound effects
         self.hit_sound = pg.mixer.Sound("assets/soundeffects/playerhit.mp3")
         self.melee_attack_sound = pg.mixer.Sound("assets/soundeffects/meleeattack.mp3")
-        self.ranged_attack_sound = pg.mixer.Sound("assets/soundeffects/rangedattack.mp3")
+        self.ranged_attack_sound = pg.mixer.Sound("assets/soundeffects/lasersound.wav")
 
         self.font = pg.font.Font(None, 20)  # TODO
 
-        self.speed = 2
+        self.speed = 0.5
         self.gravity = 0.5
         self.vel_y = 0
         self.jump_strength = -13
@@ -245,8 +245,11 @@ class Player(pg.sprite.Sprite):
         keys = pg.key.get_pressed()
         mouse_buttons = pg.mouse.get_pressed()
 
-        self.melee_pressed = keys[pg.K_q] or mouse_buttons[0]  # Q and left click for melee attack
-        self.ranged_pressed = keys[pg.K_e] or mouse_buttons[2]  # E and right click for ranged attack
+        # self.melee_pressed = keys[pg.K_q] or mouse_buttons[0]  # Q and left click for melee attack *ORIGINAL*
+
+        # Modified
+        self.melee_pressed = keys[pg.K_j] or mouse_buttons[0]   # J and left click for melee attack
+        self.ranged_pressed = keys[pg.K_k] or mouse_buttons[2]  # K and right click for ranged attack
 
         self.up_press = keys[pg.K_SPACE] or keys[pg.K_UP] or keys[pg.K_w]
         self.left_press = keys[pg.K_LEFT] or keys[pg.K_a]
@@ -417,7 +420,7 @@ class Player(pg.sprite.Sprite):
         """Calculates and draws the range attack count."""
 
         # Render the text for displaying the remaining ranged attacks count
-        text_count = f"{10 - self.ranged_attack_count}"
+        text_count = f"{100 - self.ranged_attack_count}" # Change the count show on the screen to 100, else it will show negative
         text_surface_count = self.font.render(text_count, True, (255, 255, 255))  # White color text
 
         # Render the static label "Arrows Left:"

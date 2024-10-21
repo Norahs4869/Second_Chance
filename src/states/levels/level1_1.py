@@ -7,7 +7,7 @@ class Level1_1(Level):
         imgArr = [f"plx-{i}.png" for i in range(1, 6)]
         super().__init__(
             level=1,
-            music_file="levelmusic.mp3",
+            music_file="Chopin_Nocturne_Op.9_No.2_-_Aurbanni.mp3",
             imgArr=imgArr
         )
 
