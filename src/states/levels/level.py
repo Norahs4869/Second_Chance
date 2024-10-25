@@ -11,6 +11,7 @@ from src.entities.enemies.archer import archer
 from src.entities.enemies.eyeball import Eyeball
 from src.entities.enemies.skeleton import Skeleton
 from src.entities.enemies.wolf import Wolf
+from src.entities.enemies.goblin import Goblin
 from src.entities.player import Player
 from src.objects.tiles import Tile
 from src.states.minigames.minigame import Minigame
@@ -309,7 +310,8 @@ class World:
                         enemy = Wolf(x * TILE_SIZE, y * TILE_SIZE, self.platform_group, self.tiles)
                         self.enemy_group.add(enemy)
                     elif tile == 20:
-                        pass
+                        enemy = Goblin(x * TILE_SIZE, y * TILE_SIZE, self.platform_group, self.tiles)
+                        self.enemy_group.add(enemy)
                     img = self.tile_list[tile]
                     t = Tile(img, x * TILE_SIZE, y * TILE_SIZE, tile)
                     if collision:

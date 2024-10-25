@@ -44,6 +44,14 @@ entities.enemies.wolf module
    :undoc-members:
    :show-inheritance:
 
+entities.enemies.goblin module
+----------------------------
+
+.. automodule:: entities.enemies.goblin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
